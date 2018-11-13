@@ -45,6 +45,8 @@ function setRound() {
     setCrystalValue();
     setGuessNumber();
     clearScore();
+    $("#roundendtext").hide();
+    $("#resetbutton").hide();
 }
 
 // create a function that initializes the game upon page refresh
@@ -53,9 +55,9 @@ function setGame() {
     losses = 0;
     gamesPlayed = 0;
     setRound();
-    $("#roundendtext").style.display = "none";
-    $("#resetbutton").style.display = "none";
 }
+
+setGame();
 
 // create a function that prints wins, losses, games played, and the target score;
 function printVals() {
@@ -63,31 +65,42 @@ function printVals() {
     $("#losses").html(losses);
     $("#gamesplayed").html(gamesPlayed);
     $("#targetnum").html(currentTarget);
+    $("#playerscore").html(currentScore);
 }
-
-roundEndText.style.display = "none";
-continueText.style.display = "none";
 
 // check for win/loss
 function checkGameEnd() {
     if (currentScore < currentTarget) {
         // nothing: keep playing
     } else if (currentScore === currentTarget) {
-        alert("Win condition");
         wins++;
+        $("#roundendtext").show();
+        $("#roundendtext").html("Congratulations! You win!");
+        $("#resetbutton").show();
     } else if (currentScore > currentTarget) {
-        alert("Lose condition");
         losses++;
+        $("#roundendtext").show();
+        $("#roundendtext").html("Too bad :c You lost");
+        $("#resetbutton").show();
     }
 }
 
 // on click: get the data value of the crystal clicked on, add to user score, and check for win/lose condition
 $(".crystal").on("click", function() {
-    var dataval = $(event.target).attr("data-value");
-    console.log(dataval);
-    currentScore += parseInt(dataval);
-    console.log(currentScore);
-    $("#playerscore").html(currentScore);
+    // only run this as long as currentScore from user is below the current Target number
+    if (currentScore < currentTarget) {
+        var dataval = $(event.target).attr("data-value");
+        console.log(dataval);
+        currentScore += parseInt(dataval);
+        console.log(currentScore);
+        $("#playerscore").html(currentScore);
 
-    checkGameEnd();
+        checkGameEnd();
+    }
+});
+
+// on click: reset the game
+$("#resetbutton").on("click", function() {
+    setRound();
+    printVals();
 });
