@@ -10,14 +10,36 @@ p {
 
 h1 {
     text-align: center;
-    border: 1px black solid;
+    border-bottom: 5px black dashed;
+    padding: 0;
 }
 
 .container {
     margin-top: 5rem;
+    background: white;
+    border: 2px black dashed;
 }
 
 body {
     background-image: url(../images/asanoha-400px.png);
     background-repeat: repeat;
+}
+
+#gameendtext {
+    background: white;
+    width: 50%;
+    margin: auto;
+    border: 2px black dashed;
+    height: 100x;
+}
+
+#roundendtext {
+    padding-top: 10px;
+}
+
+#resetbutton {
+    font-weight: bold;
+
+    margin-left: auto;
+    margin-right: auto;
 }
