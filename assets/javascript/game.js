@@ -100,7 +100,7 @@ $(document).ready(function() {
     setGame();
 
     // when user clicks on a crystal, grab the value, add it to the current score, and check to see if the game should end
-    $(".crystal").on("click", function() {
+    $(".crystal").on("click", function(event) {
         // only run this as long as currentScore from user is below the current Target number
         if (currentScore < currentTarget) {
             var dataval = $(event.target).attr("data-value");

@@ -12,6 +12,9 @@ h1 {
     text-align: center;
     border-bottom: 5px black dashed;
     padding: 0;
+    font-family: "Unica One", cursive;
+    font-size: 50px;
+    font-weight: bold;
 }
 
 .container {
